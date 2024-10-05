@@ -56,19 +56,23 @@ function extractArgs(nodes, functions) {
     });
 }
 
-export function transformDecl(node, functions) {
+export function transformDecl(node, { functions, ignoredProps }) {
+    if (ignoredProps.includes(node.prop)) return node;
+
     return then(transformString(node.value, functions), value => {
         node.value = value;
     });
 }
 
-export function transformAtRule(node, functions) {
+export function transformAtRule(node, { functions, ignoredAtRules }) {
+    if (ignoredAtRules.includes(node.name)) return node
+
     return then(transformString(node.params, functions), value => {
         node.params = value;
     });
 }
 
-export function transformRule(node, functions) {
+export function transformRule(node, { functions }) {
     return then(transformString(node.selector, functions), value => {
         node.selector = value;
     });
