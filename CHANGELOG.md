@@ -1,3 +1,7 @@
+# 4.1.0 - 2024-10-04
+* Add `ignoredAtRules` option.
+* Add `ignoredProps` option.
+
 # 4.0.2 - 2020-11-08
 * Update to PostCSS 8.
 * Remove `glob` option. 
