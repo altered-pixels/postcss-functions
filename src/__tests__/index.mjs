@@ -26,6 +26,21 @@ test(
 );
 
 test(
+    'should skip ignored props',
+    testFixture,
+    'a{foo:bar()}',
+    null,
+    {
+        functions: {
+            'bar': function () {
+                return 'baz';
+            }
+        },
+        ignoredProps: ['foo']
+    }
+);
+
+test(
     'should accept deferred functions',
     testFixture,
     'a{foo:bar()}',
@@ -101,6 +116,21 @@ test(
                 return 'baz';
             }
         }
+    }
+);
+
+test(
+    'should skip ignored at-rules',
+    testFixture,
+    '@foo bar(){bat:qux}',
+    null,
+    {
+        functions: {
+            'bar': function () {
+                return 'baz';
+            }
+        },
+        ignoredAtRules: ['foo']
     }
 );
 
